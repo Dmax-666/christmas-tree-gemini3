@@ -38,7 +38,7 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({ mode, onToggle, hasPhotos 
               {showLoadedNotice ? '已加载本地 photos 文件夹中的图片' : '在 public/photos 放入图片即可自动展示'}
             </div>
           </div>
-        )}
+        </div>
       </header>
 
       {/* Control Panel */}
