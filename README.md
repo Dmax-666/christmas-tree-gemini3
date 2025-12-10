@@ -36,7 +36,7 @@ TargetPosition：构成树木圆锥形状的目标坐标。 在 useFrame 中根�
 4. **Open your browser:**
    - Navigate to `http://localhost:3010`
    - Allow camera access for gesture control
-   - Click "上传照片" to upload your photos
+   - Place your photos under `public/photos` before running to see them on the tree automatically
 
 
 ## 🎯 Usage
@@ -56,6 +56,12 @@ When no hand is detected, you can:
 - **Click and drag** to rotate the view
 - **Scroll** to zoom in/out
 - **Right-click and drag** to pan (disabled by default)
+
+### Photos
+
+- Add image files (jpg/jpeg/png/webp/gif) to `public/photos`.
+- The repository keeps this folder with an empty `.gitkeep` so it exists even before you add pictures.
+- Images in that folder are automatically discovered and wrapped onto the tree as polaroid ornaments at startup.
 
 ## 🎅 Happy Holidays!
 
