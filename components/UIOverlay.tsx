@@ -33,8 +33,10 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({ mode, onToggle, hasPhotos 
     <div className="absolute top-0 left-0 w-full h-full pointer-events-none flex flex-col justify-between p-8 z-10">
       {/* Header */}
       <header className="flex flex-col items-center">
-        <h1 className={headingClassName}>Merry Christmas</h1>
-
+        <h1 className={headingClassName}>
+          Merry Christmas
+        </h1>
+        
         {/* Photo notice */}
         {(showLoadedNotice || !hasPhotos) && (
           <div className="mt-6 pointer-events-auto">
@@ -42,7 +44,7 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({ mode, onToggle, hasPhotos 
               {showLoadedNotice ? '已加载本地 photos 文件夹中的图片' : '在 public/photos 放入图片即可自动展示'}
             </div>
           </div>
-        )}
+        </div>
       </header>
 
       {/* Control Panel */}
