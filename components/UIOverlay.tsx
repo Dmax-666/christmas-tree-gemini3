@@ -11,6 +11,13 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({ mode, onToggle, hasPhotos 
   const isFormed = mode === TreeMode.FORMED;
   const [showLoadedNotice, setShowLoadedNotice] = useState(false);
 
+  const headingClassName = [
+    'text-4xl md:text-6xl font-bold',
+    'text-transparent bg-clip-text bg-gradient-to-r',
+    'from-[#D4AF37] via-[#F5E6BF] to-[#D4AF37]',
+    'font-serif drop-shadow-lg tracking-wider text-center',
+  ].join(' ');
+
   useEffect(() => {
     if (!hasPhotos) {
       setShowLoadedNotice(false);
@@ -27,7 +34,7 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({ mode, onToggle, hasPhotos 
       
       {/* Header */}
       <header className="flex flex-col items-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F5E6BF] to-[#D4AF37] font-serif drop-shadow-lg tracking-wider text-center">
+        <h1 className={headingClassName}>
           Merry Christmas
         </h1>
         
