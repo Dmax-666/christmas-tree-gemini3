@@ -60,7 +60,8 @@ When no hand is detected, you can:
 ### Photos
 
 - Add image files (jpg/jpeg/png/webp/gif) to `public/photos`.
-- They will be automatically discovered and wrapped onto the tree as polaroid ornaments at startup.
+- The repository keeps this folder with an empty `.gitkeep` so it exists even before you add pictures.
+- Images in that folder are automatically discovered and wrapped onto the tree as polaroid ornaments at startup.
 
 ## 🎅 Happy Holidays!
 

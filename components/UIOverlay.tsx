@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TreeMode } from '../types';
 
 interface UIOverlayProps {
@@ -9,6 +9,18 @@ interface UIOverlayProps {
 
 export const UIOverlay: React.FC<UIOverlayProps> = ({ mode, onToggle, hasPhotos }) => {
   const isFormed = mode === TreeMode.FORMED;
+  const [showLoadedNotice, setShowLoadedNotice] = useState(false);
+
+  useEffect(() => {
+    if (!hasPhotos) {
+      setShowLoadedNotice(false);
+      return;
+    }
+
+    setShowLoadedNotice(true);
+    const timer = setTimeout(() => setShowLoadedNotice(false), 1000);
+    return () => clearTimeout(timer);
+  }, [hasPhotos]);
 
   return (
     <div className="absolute top-0 left-0 w-full h-full pointer-events-none flex flex-col justify-between p-8 z-10">
@@ -20,9 +32,11 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({ mode, onToggle, hasPhotos 
         </h1>
         
         {/* Photo notice */}
-        <div className="mt-6 pointer-events-auto">
-          <div className="px-6 py-3 border-2 border-[#D4AF37] bg-black/50 backdrop-blur-md text-[#D4AF37] font-serif tracking-widest text-center">
-            {hasPhotos ? '已加载本地 photos 文件夹中的图片' : '在 public/photos 放入图片即可自动展示'}
+        {(showLoadedNotice || !hasPhotos) && (
+          <div className="mt-6 pointer-events-auto">
+            <div className="px-6 py-3 border-2 border-[#D4AF37] bg-black/50 backdrop-blur-md text-[#D4AF37] font-serif tracking-widest text-center">
+              {showLoadedNotice ? '已加载本地 photos 文件夹中的图片' : '在 public/photos 放入图片即可自动展示'}
+            </div>
           </div>
         </div>
       </header>
