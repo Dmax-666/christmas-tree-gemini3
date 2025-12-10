@@ -1,5 +1,5 @@
 
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Loader } from '@react-three/drei';
 import { Experience } from './components/Experience';
@@ -50,16 +50,29 @@ export default function App() {
   const [handPosition, setHandPosition] = useState<{ x: number; y: number; detected: boolean }>({ x: 0.5, y: 0.5, detected: false });
   const [uploadedPhotos, setUploadedPhotos] = useState<string[]>([]);
 
+  useEffect(() => {
+    const loadLocalPhotos = () => {
+      const photoModules = import.meta.glob<string>('/public/photos/*.{png,jpg,jpeg,webp,gif}', {
+        eager: true,
+        as: 'url',
+      });
+
+      const urls = Object.values(photoModules);
+
+      // Keep a deterministic order for consistent layout
+      urls.sort();
+      setUploadedPhotos(urls);
+    };
+
+    loadLocalPhotos();
+  }, []);
+
   const toggleMode = () => {
     setMode((prev) => (prev === TreeMode.FORMED ? TreeMode.CHAOS : TreeMode.FORMED));
   };
 
   const handleHandPosition = (x: number, y: number, detected: boolean) => {
     setHandPosition({ x, y, detected });
-  };
-
-  const handlePhotosUpload = (photos: string[]) => {
-    setUploadedPhotos(photos);
   };
 
   return (
@@ -83,9 +96,9 @@ export default function App() {
         barStyles={{ background: '#D4AF37', height: '10px' }}
         dataStyles={{ color: '#D4AF37', fontFamily: 'Cinzel' }}
       />
-      
-      <UIOverlay mode={mode} onToggle={toggleMode} onPhotosUpload={handlePhotosUpload} hasPhotos={uploadedPhotos.length > 0} />
-      
+
+      <UIOverlay mode={mode} onToggle={toggleMode} hasPhotos={uploadedPhotos.length > 0} />
+
       {/* Gesture Control Module */}
       <GestureController currentMode={mode} onModeChange={setMode} onHandPosition={handleHandPosition} />
     </div>

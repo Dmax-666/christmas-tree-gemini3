@@ -11,14 +11,10 @@ import { TreeMode } from '../types';
  * ==================================================================================
  * 1. Create a folder named "photos" inside your "public" directory.
  *    (e.g., public/photos/)
- * 
- * 2. Place your JPG images in there.
- * 
- * 3. Rename them sequentially:
- *    1.jpg, 2.jpg, 3.jpg ... up to 13.jpg
- * 
- *    If a file is missing (e.g., you only have 5 photos), the frame will 
- *    display a placeholder instead of crashing the app.
+ *
+ * 2. Drop any supported images inside (jpg, jpeg, png, webp, gif).
+ *
+ * 3. They will be auto-detected at runtime and attached to the tree.
  * ==================================================================================
  */
 
